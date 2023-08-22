@@ -14,6 +14,7 @@ class Channel:
         self.channel = self.youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
         self.title = self.channel['items'][0]['snippet']['title']
         self.description = self.channel['items'][0]['snippet']['description']
+        self.url = f'https://www.youtube.com/channel/{self.channel_id}'
 
     @property
     def channel_id(self):
