@@ -10,7 +10,7 @@ class Channel:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         api_key = os.getenv('YT_API_KEY')
         self.youtube = build('youtube', 'v3', developerKey=api_key)
-        self.channel_id = channel_id
+        self.__channel_id = channel_id
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
