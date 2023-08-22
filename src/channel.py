@@ -1,6 +1,7 @@
 import json
 import os
 from googleapiclient.discovery import build
+from config import ROOT_PATH
 
 
 class Channel:
@@ -24,6 +25,29 @@ class Channel:
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
+
+    def to_json(self, filename):
+        """
+        Сохраняет в файл значения атрибутов экземпляра `Channel`
+        """
+        channel_attributes = {
+            'channel_id': self.channel_id,
+            'title': self.title,
+            'description': self.description,
+            'url': self.url,
+            'subscriber_count': self.subscriber_count,
+            'video_count': self.video_count,
+            'view_count': self.view_count
+        }
+        file_path = os.path.join(ROOT_PATH, 'src', filename)
+        if os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                list_of_data = json.load(f)
+        else:
+            list_of_data = []
+        list_of_data.append(channel_attributes)
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(list_of_data, f, indent=1)
 
     @classmethod
     def get_service(cls):
