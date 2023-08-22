@@ -15,6 +15,7 @@ class Channel:
         self.title = self.channel['items'][0]['snippet']['title']
         self.description = self.channel['items'][0]['snippet']['description']
         self.url = f'https://www.youtube.com/channel/{self.channel_id}'
+        self.subscriber_count = self.channel['items'][0]['statistics']['subscriberCount']
 
     @property
     def channel_id(self):
