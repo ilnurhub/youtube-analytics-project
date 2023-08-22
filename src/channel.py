@@ -13,6 +13,7 @@ class Channel:
         self.__channel_id = channel_id
         self.channel = self.youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
         self.title = self.channel['items'][0]['snippet']['title']
+        self.description = self.channel['items'][0]['snippet']['description']
 
     @property
     def channel_id(self):
