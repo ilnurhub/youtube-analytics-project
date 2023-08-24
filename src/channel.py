@@ -22,6 +22,12 @@ class Channel:
     def channel_id(self):
         return self.__channel_id
 
+    def __str__(self):
+        """
+        Возвращает название и ссылку на канал по шаблону `<название_канала> (<ссылка_на_канал>)
+        """
+        return f"{self.title} ({self.url})"
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
