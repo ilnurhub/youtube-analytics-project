@@ -22,7 +22,7 @@ class Channel:
     def channel_id(self):
         return self.__channel_id
 
-    def __str__(self) -> str:
+    def __str__(self):
         """
         Возвращает название и ссылку на канал по шаблону `<название_канала> (<ссылка_на_канал>)
         """
@@ -34,31 +34,31 @@ class Channel:
         """
         return int(self.subscriber_count) + int(other.subscriber_count)
 
-    def __sub__(self, other) -> int:
+    def __sub__(self, other):
         """
         Возвращает результат вычитания количества подписчиков двух каналов
         """
         return int(self.subscriber_count) - int(other.subscriber_count)
 
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other):
         """
         Возвращает результат сравнения "меньше" двух каналов по количеству подписчиков
         """
         return int(self.subscriber_count) < int(other.subscriber_count)
 
-    def __le__(self, other) -> bool:
+    def __le__(self, other):
         """
         Возвращает результат сравнения "меньше или равно" двух каналов по количеству подписчиков
         """
         return int(self.subscriber_count) <= int(other.subscriber_count)
 
-    def __gt__(self, other) -> bool:
+    def __gt__(self, other):
         """
         Возвращает результат сравнения "больше" двух каналов по количеству подписчиков
         """
         return int(self.subscriber_count) > int(other.subscriber_count)
 
-    def __ge__(self, other) -> bool:
+    def __ge__(self, other):
         """
         Возвращает результат сравнения "больше или равно" двух каналов по количеству подписчиков
         """
