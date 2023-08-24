@@ -10,7 +10,7 @@ class Channel:
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         self.__channel_id = channel_id
-        self.channel = Channel.get_service().channels().list(id=self.channel_id, part='snippet,statistics').execute()
+        self.channel = self.get_service().channels().list(id=self.channel_id, part='snippet,statistics').execute()
         self.title = self.channel['items'][0]['snippet']['title']
         self.description = self.channel['items'][0]['snippet']['description']
         self.url = f'https://www.youtube.com/channel/{self.channel_id}'
@@ -21,6 +21,54 @@ class Channel:
     @property
     def channel_id(self):
         return self.__channel_id
+
+    def __str__(self):
+        """
+        Возвращает название и ссылку на канал по шаблону `<название_канала> (<ссылка_на_канал>)
+        """
+        return f"{self.title} ({self.url})"
+
+    def __add__(self, other) -> int:
+        """
+        Возвращает результат сложения количества подписчиков двух каналов
+        """
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other):
+        """
+        Возвращает результат вычитания количества подписчиков двух каналов
+        """
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __lt__(self, other):
+        """
+        Возвращает результат сравнения "меньше" двух каналов по количеству подписчиков
+        """
+        return int(self.subscriber_count) < int(other.subscriber_count)
+
+    def __le__(self, other):
+        """
+        Возвращает результат сравнения "меньше или равно" двух каналов по количеству подписчиков
+        """
+        return int(self.subscriber_count) <= int(other.subscriber_count)
+
+    def __gt__(self, other):
+        """
+        Возвращает результат сравнения "больше" двух каналов по количеству подписчиков
+        """
+        return int(self.subscriber_count) > int(other.subscriber_count)
+
+    def __ge__(self, other):
+        """
+        Возвращает результат сравнения "больше или равно" двух каналов по количеству подписчиков
+        """
+        return int(self.subscriber_count) >= int(other.subscriber_count)
+
+    def __eq__(self, other) -> bool:
+        """
+        Возвращает результат сравнения "равно" двух каналов по количеству подписчиков
+        """
+        return int(self.subscriber_count) == int(other.subscriber_count)
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
