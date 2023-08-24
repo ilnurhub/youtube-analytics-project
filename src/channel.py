@@ -46,6 +46,12 @@ class Channel:
         """
         return int(self.subscriber_count) < int(other.subscriber_count)
 
+    def __le__(self, other):
+        """
+        Возвращает результат сравнения "меньше или равно" двух каналов по количеству подписчиков
+        """
+        return int(self.subscriber_count) <= int(other.subscriber_count)
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
