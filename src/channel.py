@@ -34,6 +34,12 @@ class Channel:
         """
         return int(self.subscriber_count) + int(other.subscriber_count)
 
+    def __sub__(self, other):
+        """
+        Возвращает результат вычитания количества подписчиков двух каналов
+        """
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
