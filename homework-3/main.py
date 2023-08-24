@@ -9,10 +9,10 @@ if __name__ == '__main__':
     print(moscowpython)  # 'MoscowPython (https://www.youtube.com/channel/UC-OVMPlMA3-YCIeg4z5z23A)'
     print(moscowpython + highload)  # 100100
     print(moscowpython - highload)  # -48300
-    print(highload - moscowpython)  # 48300
-    print(moscowpython > highload)  # False
-    print(moscowpython >= highload)  # False
-    print(moscowpython < highload)  # True
-    print(moscowpython <= highload)  # True
-    print(moscowpython == highload)  # False
-    
+    # print(highload - moscowpython)  # 48300
+    # print(moscowpython > highload)  # False
+    # print(moscowpython >= highload)  # False
+    # print(moscowpython < highload)  # True
+    # print(moscowpython <= highload)  # True
+    # print(moscowpython == highload)  # False
+    #
