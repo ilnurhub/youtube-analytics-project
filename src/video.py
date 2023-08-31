@@ -10,3 +10,9 @@ class Video(Channel):
         self.video_link = f'https://www.youtube.com/watch?v={self.video_id}'
         self.view_count = self.video_response['items'][0]['statistics']['viewCount']
         self.like_count = self.video_response['items'][0]['statistics']['likeCount']
+
+    def __str__(self):
+        """
+        Возвращает название видео
+        """
+        return self.video_title
