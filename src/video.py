@@ -16,3 +16,7 @@ class Video(Channel):
         Возвращает название видео
         """
         return self.video_title
+
+
+class PLVideo(Video):
+    pass
