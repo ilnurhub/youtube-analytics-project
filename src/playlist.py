@@ -18,6 +18,16 @@ class PlayList:
                                                                ).execute()
         self.title = self.playlist_title()
 
+    def channel_id(self):
+        """
+        Возвращает id канала, в котором находится плейлист
+        """
+        video_id = self.__video_response['items'][0]['id']
+        video_resp = self.get_service().videos().list(part='snippet,statistics',
+                                                      id=video_id
+                                                      ).execute()
+        return video_resp['items'][0]['snippet']['channelId']
+
     @classmethod
     def get_service(cls):
         """
