@@ -6,6 +6,17 @@ class PlayList:
     def __init__(self, playlist_id):
         self.playlist_id = playlist_id
         self.url = f'https://www.youtube.com/playlist?list={self.playlist_id}'
+        self.__playlist_videos = self.get_service().playlistItems().list(playlistId=self.playlist_id,
+                                                                         part='contentDetails',
+                                                                         maxResults=50, ).execute()
+        self.__video_ids: list[str] = [video['contentDetails']['videoId'] for video in self.__playlist_videos['items']]
+        self.__video_response = self.get_service().videos().list(part='contentDetails,statistics',
+                                                                 id=','.join(self.__video_ids)).execute()
+        self.__playlists = self.get_service().playlists().list(channelId=self.channel_id(),
+                                                               part='contentDetails,snippet',
+                                                               maxResults=50,
+                                                               ).execute()
+        self.title = self.playlist_title()
 
     @classmethod
     def get_service(cls):
