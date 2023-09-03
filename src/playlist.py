@@ -1,5 +1,7 @@
 import os
 from googleapiclient.discovery import build
+import isodate
+from datetime import timedelta
 
 
 class PlayList:
@@ -17,6 +19,7 @@ class PlayList:
                                                                maxResults=50,
                                                                ).execute()
         self.title = self.playlist_title()
+        self.__total_duration = self.total_duration
 
     def channel_id(self):
         """
@@ -44,3 +47,13 @@ class PlayList:
         api_key = os.getenv('YT_API_KEY')
         youtube = build('youtube', 'v3', developerKey=api_key)
         return youtube
+
+    @property
+    def total_duration(self):
+        all_video_duration = timedelta(hours=0, minutes=0, seconds=0)
+        for video in self.__video_response['items']:
+            iso_8601_duration = video['contentDetails']['duration']
+            duration = isodate.parse_duration(iso_8601_duration)
+            all_video_duration += duration
+        self.__total_duration = all_video_duration
+        return self.__total_duration
