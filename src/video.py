@@ -1,7 +1,8 @@
-from src.channel import Channel
+import os
+from googleapiclient.discovery import build
 
 
-class Video(Channel):
+class Video:
     def __init__(self, video_id: str):
         self.video_id = video_id
         self.video_response = self.get_service().videos().list(part='snippet,statistics,contentDetails,topicDetails',
@@ -16,6 +17,15 @@ class Video(Channel):
         Возвращает название видео
         """
         return self.video_title
+
+    @classmethod
+    def get_service(cls):
+        """
+        Возвращает объект для работы с YouTube API
+        """
+        api_key = os.getenv('YT_API_KEY')
+        youtube = build('youtube', 'v3', developerKey=api_key)
+        return youtube
 
 
 class PLVideo(Video):
