@@ -28,6 +28,14 @@ class PlayList:
                                                       ).execute()
         return video_resp['items'][0]['snippet']['channelId']
 
+    def playlist_title(self):
+        """
+        Возвращает название плейлиста
+        """
+        for playlist in self.__playlists['items']:
+            if playlist['id'] == self.playlist_id:
+                return playlist['snippet']['title']
+
     @classmethod
     def get_service(cls):
         """
