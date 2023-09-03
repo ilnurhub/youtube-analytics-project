@@ -39,6 +39,17 @@ class PlayList:
             if playlist['id'] == self.playlist_id:
                 return playlist['snippet']['title']
 
+    def show_best_video(self):
+        """
+        Возвращает ссылку на самое популярное видео из плейлиста (по количеству лайков)
+        """
+        max_like_count = 0
+        video_url = ''
+        for video in self.__video_response['items']:
+            if int(video['statistics']['likeCount']) > max_like_count:
+                video_url = f'https://youtu.be/{video["id"]}'
+        return video_url
+
     @classmethod
     def get_service(cls):
         """
