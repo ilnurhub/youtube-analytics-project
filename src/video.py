@@ -23,7 +23,10 @@ class Video:
         """
         Возвращает название видео
         """
-        return self.title
+        if self.title:
+            return self.title
+        else:
+            return 'None'
 
     @classmethod
     def get_service(cls):
